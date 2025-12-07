@@ -25,7 +25,7 @@ export function UserRating({
   selectedProduct,
 }: RatingDialogProps) {
   const [selectedStar, setSelectedStar] = useState<number | null>(null);
-  const { data, setData } = useApi();
+  const { data, setData, setOriginalData } = useApi();
 
   useEffect(() => {
     if (!openRatingDialog) {
@@ -63,6 +63,7 @@ export function UserRating({
         : ele
     );
     setData(updatedProduct);
+    setOriginalData(updatedProduct);
     setOpen(false);
   };
 
@@ -89,7 +90,7 @@ export function UserRating({
                   size={20}
                   className="w-10 h10"
                   onClick={() => storeRating(i)}
-                  color={filled ? "#FFD700" : "#E0E0E0"} // gold + grey
+                  color={filled ? "#FFD700" : "#E0E0E0"}
                 />
               );
             })}

@@ -6,11 +6,7 @@ const Rating = ({ rate, total }: { rate: number; total: number }) => {
       {[...Array(total)].map((_, i) => {
         const filled = i < rate;
         return (
-          <FaStar
-            key={i}
-            size={20}
-            color={filled ? "#FFD700" : "#E0E0E0"} // gold + grey
-          />
+          <FaStar key={i} size={20} color={filled ? "#FFD700" : "#E0E0E0"} />
         );
       })}
     </div>

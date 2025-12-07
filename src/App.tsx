@@ -5,7 +5,7 @@ import ProductList from "./productList";
 import { useApi } from "./ApiContext";
 
 function App() {
-  const { setData } = useApi();
+  const { setData, setOriginalData } = useApi();
 
   useEffect(() => {
     fetch(
@@ -14,6 +14,7 @@ function App() {
       .then((res) => res.json())
       .then((products) => {
         setData(products);
+        setOriginalData(products);
       })
       .catch((err) => console.log(err));
   }, []);

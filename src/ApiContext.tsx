@@ -20,17 +20,24 @@ export interface Rating {
 export type ProductsResponse = Product[];
 
 export interface ApiContextType {
-  data: ProductsResponse[] | null;
-  setData: (value: ProductsResponse[] | null) => void;
+  data: ProductsResponse | null; // filtered list
+  originalData: ProductsResponse | null; // full list
+  setData: (value: ProductsResponse | null) => void;
+  setOriginalData: (value: ProductsResponse | null) => void;
 }
 
 const ApiContext = createContext<ApiContextType | undefined>(undefined);
 
 export const ApiProvider = ({ children }: { children: ReactNode }) => {
-  const [data, setData] = useState<ProductsResponse[] | null>(null);
+  const [data, setData] = useState<ProductsResponse | null>(null);
+  const [originalData, setOriginalData] = useState<ProductsResponse | null>(
+    null
+  );
 
   return (
-    <ApiContext.Provider value={{ data, setData }}>
+    <ApiContext.Provider
+      value={{ data, originalData, setData, setOriginalData }}
+    >
       {children}
     </ApiContext.Provider>
   );

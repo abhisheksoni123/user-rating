@@ -17,7 +17,7 @@ function Product() {
   return (
     <div className="flex flex-wrap gap-4">
       {data?.map((res: any) => (
-        <div className="bg-white debug w-60 h-80 flex flex-col justify-center gap-2">
+        <div className="bg-white w-60 h-80 flex flex-col justify-center gap-2">
           <div
             id="image-section flex"
             className="flex justify-center items-center p-2"
