@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Rating from "./rating";
-import { truncate } from "./utils";
+import { truncate } from "../utils";
 import { UserRating } from "./user-rating-dialog";
-import { useApi } from "./ApiContext";
+import { useApi } from "../ApiContext";
 
 function Product() {
   const [openRatingDialog, setOpenRatingDialog] = useState(false);

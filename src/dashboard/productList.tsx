@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Product from "./product";
-import { useApi } from "./ApiContext";
+import { useApi } from "../ApiContext";
 
 function ProductList() {
   const [search, setSearch] = useState("");

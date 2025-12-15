@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { useApi, type Product } from "./ApiContext";
+import { useApi, type Product } from "../ApiContext";
 
 interface RatingDialogProps {
   openRatingDialog: boolean;
@@ -41,6 +41,19 @@ export function UserRating({
     setSelectedStar(null);
   };
 
+  const updateRatingApi = (rate: number) => {
+    let productId = selectedProduct?._id;
+    fetch(`http://localhost:8000/api/users/${productId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ rate }),
+    })
+      .then((res) => console.log("success"))
+      .catch((err) => console.log("Err", err));
+  };
+
   const saveRating = () => {
     if (selectedStar === null) return;
     const userRating = selectedStar + 1;
@@ -64,6 +77,7 @@ export function UserRating({
     );
     setData(updatedProduct);
     setOriginalData(updatedProduct);
+    updateRatingApi(newAverageRating);
     setOpen(false);
   };
 
