@@ -19,7 +19,7 @@ interface RatingDialogProps {
   selectedProduct: Product;
 }
 
-export function UserRating({
+export function ProductRating({
   openRatingDialog,
   setOpen,
   selectedProduct,
@@ -43,7 +43,7 @@ export function UserRating({
 
   const updateRatingApi = (rate: number) => {
     let productId = selectedProduct?._id;
-    fetch(`http://localhost:8000/api/users/${productId}`, {
+    fetch(`http://localhost:8000/api/products/${productId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -56,13 +56,13 @@ export function UserRating({
 
   const saveRating = () => {
     if (selectedStar === null) return;
-    const userRating = selectedStar + 1;
+    const productRating = selectedStar + 1;
 
     const oldAverage = selectedProduct.rating.rate;
     const oldCount = selectedProduct.rating.count;
 
     const newAverageRating =
-      (oldAverage * oldCount + userRating) / (oldCount + 1);
+      (oldAverage * oldCount + productRating) / (oldCount + 1);
     const updatedProduct: any = data?.map((ele: any) =>
       ele.id === selectedProduct?.id
         ? {

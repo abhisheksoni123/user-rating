@@ -20,14 +20,18 @@ function ProductList() {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <input
-        type="text"
-        placeholder="Search product..."
-        className="border p-2 rounded w-56 mb-4"
-        onChange={(e) => handleSearch(e.target.value)}
-      />
-      <Product />
+    <div className="flex flex-col items-center w-full">
+      <div>
+        <input
+          type="text"
+          placeholder="Search product..."
+          className="border p-2 rounded w-56 mb-4"
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+      </div>
+      <div>
+        <Product />
+      </div>
     </div>
   );
 }

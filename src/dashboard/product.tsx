@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Rating from "./rating";
 import { truncate } from "../utils";
-import { UserRating } from "./user-rating-dialog";
+import { ProductRating } from "./product-rating-dialog";
 import { useApi } from "../ApiContext";
 
 function Product() {
@@ -47,11 +47,11 @@ function Product() {
           </div>
         </div>
       ))}
-      <UserRating
+      <ProductRating
         openRatingDialog={openRatingDialog}
         setOpen={setOpenRatingDialog}
         selectedProduct={selectedProduct}
-      ></UserRating>
+      ></ProductRating>
     </div>
   );
 }
