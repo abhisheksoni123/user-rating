@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { useApi, type Product } from "../ApiContext";
+import { toast } from "sonner";
 
 interface RatingDialogProps {
   openRatingDialog: boolean;
@@ -50,7 +51,11 @@ export function ProductRating({
       },
       body: JSON.stringify({ rate }),
     })
-      .then((res) => console.log("success"))
+      .then((res) => {
+        toast("Product rated successfully", {
+          description: `Success`,
+        });
+      })
       .catch((err) => console.log("Err", err));
   };
 

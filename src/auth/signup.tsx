@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import userLogo from "@/assets/login-user-logo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Form,
@@ -20,7 +20,7 @@ function Signup() {
 
   async function onSubmit(values: any) {
     try {
-      const res = await fetch("http://localhost:8000/api/users/signup", {
+      await fetch("http://localhost:8000/api/users/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,7 +32,7 @@ function Signup() {
       });
       navigate("/login");
     } catch (error) {
-      toast.error("ss");
+      toast.error("error in signup");
       console.log("error");
     }
   }
@@ -103,11 +103,14 @@ function Signup() {
             />
 
             <Button
-              className="bg-white text-black font-semibold text-base w-40"
+              className="bg-white hover:bg-white text-black font-semibold text-base w-40"
               type="submit"
             >
               Submit
             </Button>
+            <Link to="/login" className="text-gray-400 underline">
+              Login
+            </Link>
           </form>
         </Form>
       </div>
