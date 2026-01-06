@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import userLogo from "@/assets/login-user-logo.png";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
+import { Eye, EyeOff } from "lucide-react";
+import { storage } from "@/utils/storage";
 
 import {
   Form,
@@ -18,6 +20,13 @@ import {
 function Login() {
   const form = useForm();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    if (storage.isLoggedIn()) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   async function onSubmit(values: any) {
     try {
@@ -34,6 +43,7 @@ function Login() {
       if (!response.ok) {
         throw new Error(data.error || "Login failed");
       }
+      storage.setUser(data.user);
 
       navigate("/dashboard");
     } catch (error: any) {
@@ -82,7 +92,26 @@ function Login() {
                 <FormItem className="w-full">
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="********" {...field} />
+                    <div className="relative">
+                      <Input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="********"
+                        {...field}
+                        className="pr-10"
+                      />
+
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                      >
+                        {showPassword ? (
+                          <EyeOff size={18} />
+                        ) : (
+                          <Eye size={18} />
+                        )}
+                      </button>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

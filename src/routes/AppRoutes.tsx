@@ -2,7 +2,9 @@ import Login from "@/auth/login";
 import Signup from "@/auth/signup";
 import DashboardLayout from "@/components/layput/DashboardLayout";
 import ProductList from "@/dashboard/productList";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
+import { storage } from "@/utils/storage";
 
 const AppRoutes = () => {
   return (
@@ -10,9 +12,21 @@ const AppRoutes = () => {
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route element={<DashboardLayout />}>
-        <Route path="/dashboard" element={<ProductList />} />
+      <Route element={<ProtectedRoute />}>
+        <Route element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<ProductList />} />
+        </Route>
       </Route>
+      <Route
+        path="*"
+        element={
+          storage.isLoggedIn() ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
     </Routes>
   );
 };
