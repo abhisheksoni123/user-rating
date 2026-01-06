@@ -43,7 +43,7 @@ function Login() {
       if (!response.ok) {
         throw new Error(data.error || "Login failed");
       }
-      storage.setUser(data.user);
+      storage.setUser(data);
 
       navigate("/dashboard");
     } catch (error: any) {

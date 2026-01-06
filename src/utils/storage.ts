@@ -1,20 +1,20 @@
-const USER_KEY = "auth_user";
+const TOKEN_KEY = "auth_token";
 
 export const storage = {
-  setUser: (user: any) => {
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  setUser: (token: any) => {
+    localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
   },
 
   getUser: () => {
-    const data = localStorage.getItem(USER_KEY);
+    const data = localStorage.getItem(TOKEN_KEY);
     return data ? JSON.parse(data) : null;
   },
 
   removeUser: () => {
-    localStorage.removeItem(USER_KEY);
+    localStorage.removeItem(TOKEN_KEY);
   },
 
   isLoggedIn: () => {
-    return !!localStorage.getItem(USER_KEY);
+    return !!localStorage.getItem(TOKEN_KEY);
   },
 };
