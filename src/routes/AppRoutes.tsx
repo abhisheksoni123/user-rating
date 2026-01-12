@@ -1,10 +1,10 @@
 import Login from "@/auth/login";
 import Signup from "@/auth/signup";
 import DashboardLayout from "@/components/layput/DashboardLayout";
-import ProductList from "@/dashboard/productList";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import { storage } from "@/utils/storage";
+import ProductListing from "@/dashboard/productListing";
 
 const AppRoutes = () => {
   return (
@@ -14,7 +14,7 @@ const AppRoutes = () => {
       <Route path="/signup" element={<Signup />} />
       <Route element={<ProtectedRoute />}>
         <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<ProductList />} />
+          <Route path="/dashboard" element={<ProductListing />} />
         </Route>
       </Route>
       <Route

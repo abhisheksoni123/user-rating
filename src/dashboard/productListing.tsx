@@ -2,7 +2,7 @@ import { useState } from "react";
 import Product from "./product";
 import { useApi } from "../ApiContext";
 
-function ProductList() {
+function ProductListing() {
   const [search, setSearch] = useState("");
   const { data, setData, originalData } = useApi();
 
@@ -36,4 +36,4 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+export default ProductListing;
