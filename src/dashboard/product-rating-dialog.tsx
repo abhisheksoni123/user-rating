@@ -51,7 +51,7 @@ export function ProductRating({
       },
       body: JSON.stringify({ rate }),
     })
-      .then((res) => {
+      .then((res: any) => {
         toast("Product rated successfully", {
           description: `Success`,
         });

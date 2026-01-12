@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import userLogo from "@/assets/login-user-logo.png";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 import { Eye, EyeOff } from "lucide-react";
 import { storage } from "@/utils/storage";
 

@@ -1,10 +1,6 @@
 import { useEffect } from "react";
 import "./App.css";
-import Header from "./header";
-import ProductList from "./dashboard/productList";
 import { useApi } from "./ApiContext";
-import Login from "./auth/login";
-import Signup from "./auth/signup";
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
 
